@@ -3,7 +3,44 @@ import pandas as pd
 import numpy as np
 import clarite
 import time
-from pandas_genomics import sim, scalars
+from pandas_genomics import sim, io, scalars, GenotypeDtype
+from memory_profiler import profile
+
+
+# Define the variant for two SNPs
+variant1 = scalars.Variant("1", 1, id="rs1", ref="A", alt=["C"])
+variant2 = scalars.Variant("1", 2, id="rs2", ref="G", alt=["T"])
+
+# Define Case-Control ratio
+num_samples = 1000
+case_control_ratio = "1:3"
+n_cases = int(num_samples / 4)
+n_controls = num_samples - n_cases
+PEN_BASE = 0.05
+PEN_DIFF = 0.25
+MAFA = 0.05
+MAFB = 0.05
+SNR = 0.01
+
+# Interations
+n_loops = range(1)
+
+work_group = (
+    ["REC", "ADD"],
+    ["SUB", "ADD"],
+    ["ADD", "ADD"],
+    ["SUP", "ADD"],
+    ["DOM", "ADD"],
+    ["HET", "ADD"],
+    ["NUL", "ADD"],)
+
+# "DOMDEV", "Recessive","Dominant", "Codominant", "EDGE"
+encoding = ("Additive", "DOMDEV", "Recessive",
+            "Dominant", "Codominant", "EDGE")
+
+start = time.perf_counter()
+EDGE_alpha_Final = pd.DataFrame()
+All_Results_Final = pd.DataFrame()
 
 
 # Name conversation for parameters
@@ -15,6 +52,7 @@ def conv_u(i):
         "SUP": "SUPER_ADDITIVE",
         "DOM": "DOMINANT",
         "HET": "HET",
+        "NUL": "ADDITIVE",
     }
     return switcher.get(i, "Invalid Group")
 
@@ -27,18 +65,17 @@ def conv_l(i):
         "SUP": "Super_Additive",
         "DOM": "Dominant",
         "HET": "Heterozygous",
+        "NUL": "NULL",
     }
     return switcher.get(i, "Invalid Group")
 
 
-def simulations(seed):
-
-    train_seed = seed
-    test_seed = seed + 2000
+# @profile
+for train_seed, test_seed in zip(range(0, 1), range(2000, 2001)):
 
     ALL_RESULTS_ENCODING = pd.DataFrame()
+    ALL_RESULTS_ENCODING_EDGE = pd.DataFrame()
     ALL_RESULTS_EDGE_ALPHA = pd.DataFrame()
-    #ALL_RESULTS_ENCODING_EDGE = pd.DataFrame()
 
     for ab1, ab2 in work_group:
 
@@ -111,7 +148,8 @@ def simulations(seed):
                         encoding_info=edge_weights_me_t)
 
                 results_me = clarite.analyze.association_study(
-                    data=test_me_enc, outcomes="Outcome")
+                    data=test_me_enc, outcomes="Outcome"
+                )
                 results_me["odds ratio"] = np.exp(results_me["Beta"])
                 results_me.insert(loc=0, column="Encoding", value=v_enc)
                 results_me.insert(loc=0, column="BioAct", value=ab1l)
@@ -121,9 +159,9 @@ def simulations(seed):
                 ALL_RESULTS_ENCODING = pd.concat(
                     [ALL_RESULTS_ENCODING, results_me], axis=0)
 
-                """if v_enc.lower() == "edge":
+                if v_enc.lower() == "edge":
                     ALL_RESULTS_ENCOGIND_EDGE = pd.concat(
-                        [ALL_RESULTS_ENCODING_EDGE, results_me], axis=0)"""
+                        [ALL_RESULTS_ENCODING_EDGE, results_me], axis=0)
 
             else:
                 # DOMDEV Encoding
@@ -170,64 +208,6 @@ def simulations(seed):
         ALL_RESULTS_EDGE_ALPHA = pd.concat(
             [ALL_RESULTS_EDGE_ALPHA, edge_weights_me], axis=0)
 
-    return ALL_RESULTS_EDGE_ALPHA, ALL_RESULTS_ENCODING
+    #ALL_ALPHA_RESULTS = pd.concat([ALL_ALPHA_RESULTS, train_me], axis=0)
 
-
-def mp_treads():
-    with concurrent.futures.ProcessPoolExecutor() as executor:
-        results = executor.map(simulations, n_loops)
-        FINAL_RESULTS_ENCODING = pd.DataFrame()
-        FINAL_RESULTS_EDGE_ALPHA = pd.DataFrame()
-        for ALL_RESULTS_EDGE_ALPHA, ALL_RESULTS_ENCODING in results:
-            FINAL_RESULTS_EDGE_ALPHA = pd.concat(
-                [FINAL_RESULTS_EDGE_ALPHA, ALL_RESULTS_EDGE_ALPHA], axis=0)
-            FINAL_RESULTS_ENCODING = pd.concat(
-                [FINAL_RESULTS_ENCODING, ALL_RESULTS_ENCODING], axis=0)
-
-        FINAL_RESULTS_ENCODING.to_csv("encoding.txt", sep=";")
-        FINAL_RESULTS_EDGE_ALPHA.to_csv(
-            f"{output_path}/RESULTS_EDGE_ALPHA_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt", sep=";")
-        FINAL_RESULTS_ENCODING.to_csv(
-            f"{output_path}/RESULTS_ENCODING_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt", sep=";")
-
-    print(f"Finished in {round(time.perf_counter()-start,2)} second(s)")
-
-
-if __name__ == "__main__":
-
-    # ==> PARAMETERS:
-
-    # Define the variant for two SNPs
-    variant1 = scalars.Variant("1", 1, id="rs1", ref="A", alt=["C"])
-    variant2 = scalars.Variant("1", 2, id="rs2", ref="G", alt=["T"])
-
-    # Define Case-Control ratio
-    num_samples = 1000
-    case_control_ratio = "1:3"
-    n_cases = int(num_samples / 4)
-    n_controls = num_samples - n_cases
-    PEN_BASE = 0.05
-    PEN_DIFF = 0.25
-    MAFA = 0.05
-    MAFB = 0.05
-    SNR = 0.01
-
-    # Interations for Train and Test
-    n_loops = range(1)
-
-    work_group = (
-        ["REC", "ADD"],
-        ["SUB", "ADD"],
-        ["ADD", "ADD"],
-        ["SUP", "ADD"],
-        ["DOM", "ADD"],
-        ["HET", "ADD"])
-
-    encoding = ("Additive", "DOMDEV", "Recessive",
-                "Dominant", "Codominant", "EDGE")
-
-    output_path = "/storage/home/jpz5091/work/bams/Sim1/"
-    #output_path = "files"
-
-    start = time.perf_counter()
-    mp_treads()
+print("finish")
