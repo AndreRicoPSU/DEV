@@ -1,0 +1,591 @@
+format-version: 1.2
+date: 25:01:2011 12:46
+saved-by: cmattin
+auto-generated-by: OBO-Edit 2.0
+subsetdef: goslim_candida "Candida GO slim"
+subsetdef: goslim_generic "Generic GO slim"
+subsetdef: goslim_goa "GOA and proteome slim"
+subsetdef: goslim_pir "PIR GO slim"
+subsetdef: goslim_plant "Plant GO slim"
+subsetdef: goslim_pombe "Fission yeast GO slim"
+subsetdef: goslim_yeast "Yeast GO slim"
+subsetdef: gosubset_prok "Prokaryotic GO subset"
+synonymtypedef: CTDCODE "CTD CODE" EXACT
+synonymtypedef: systematic_synonym "Systematic synonym" EXACT
+default-namespace: file:/Users/cmattin/Documents/stuff_work/projects/ixn_ontology.txt
+
+! The Comparative Toxicogenomics Database (CTD) - http://ctdbase.org/
+! Copyright 2002-2012 MDI Biological Laboratory. All rights reserved.
+! Copyright 2012-2016 MDI Biological Laboratory & NC State University. All rights reserved.
+! Use is subject to terms set forth at http://ctdbase.org/about/legal.jsp
+! These terms include citation, linking, and notification requirements.
+
+[Term]
+id: CTDI:1
+name: abundance
+def: "The abundance of a chemical (if chemical synthesis is not known)." [CTDI:ctd_curators]
+synonym: "abu" EXACT CTDCODE []
+
+[Term]
+id: CTDI:10
+name: chemical synthesis
+def: "A biochemical event resulting in a new chemical product." [CTDI:ctd_curators]
+synonym: "csy" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:11
+name: ethylation
+def: "The addition of an ethyl group." [CTDI:ctd_curators]
+synonym: "eth" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:12
+name: export
+def: "The movement of a molecule out of a cell (by more specific means than secretion)." [CTDI:ctd_curators]
+synonym: "ext" EXACT CTDCODE []
+is_a: GO:0046903 ! secretion
+
+[Term]
+id: CTDI:13
+name: folding
+def: "The bending and positioning of a molecule to achieve conformational integrity." [CTDI:ctd_curators]
+synonym: "fol" EXACT CTDCODE []
+
+[Term]
+id: CTDI:14
+name: geranoylation
+def: "The addition of a geranoyl group." [CTDI:ctd_curators]
+synonym: "ger" EXACT CTDCODE []
+is_a: GO:0006497 ! protein lipidation
+
+[Term]
+id: CTDI:15
+name: glycation
+def: "The non-enzymatic addition of a sugar." [CTDI:ctd_curators]
+synonym: "gyc" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:16
+name: hydroxylation
+def: "The addition of a hydroxy group." [CTDI:ctd_curators]
+synonym: "hdx" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:17
+name: hydrolysis
+def: "The splitting of a molecule via the specific use of water." [CTDI:ctd_curators]
+synonym: "hyd" EXACT CTDCODE []
+is_a: CTDI:8
+
+[Term]
+id: CTDI:18
+name: import
+def: "The movement of a molecule into a cell (by more specific means than uptake)." [CTDI:ctd_curators]
+synonym: "imt" EXACT CTDCODE []
+is_a: CTDI:25
+
+[Term]
+id: CTDI:19
+name: mutagenesis
+def: "The genetic alteration of a gene product." [CTDI:ctd_curators]
+synonym: "mut" EXACT CTDCODE []
+
+[Term]
+id: CTDI:2
+name: acetylation
+def: "The addition of an acetyl group." [CTDI:ctd_curators]
+synonym: "ace" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:20
+name: oxidation
+def: "The loss of electrons." [CTDI:ctd_curators]
+synonym: "oxd" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:21
+name: reduction
+def: "The gain of electrons." [CTDI:ctd_curators]
+synonym: "red" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:22
+name: ribosylation
+def: "The addition of a ribosyl group." [CTDI:ctd_curators]
+synonym: "rib" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:23
+name: reaction
+def: "Any general biochemical or molecular event." [CTDI:ctd_curators]
+synonym: "rxn" EXACT CTDCODE []
+
+[Term]
+id: CTDI:24
+name: stability
+def: "Overall propensity of molecules to degradation." [CTDI:ctd_curators]
+synonym: "sta" EXACT CTDCODE []
+
+[Term]
+id: CTDI:25
+name: uptake
+def: "The movement of a molecule into a cell (by less specific means than import)." [CTDI:ctd_curators]
+synonym: "upt" EXACT CTDCODE []
+is_a: GO:0006810 ! transport
+
+[Term]
+id: CTDI:26
+name: cotreatment
+def: "Involving the use of two or more chemicals simultaneously." [CTDI:ctd_curators]
+synonym: "w" EXACT CTDCODE []
+
+[Term]
+id: CTDI:3
+name: activity
+def: "An elemental function of a molecule." [CTDI:ctd_curators]
+synonym: "act" EXACT CTDCODE []
+
+[Term]
+id: CTDI:4
+name: acylation
+def: "The addition of an acyl group." [CTDI:ctd_curators]
+synonym: "acy" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:5
+name: alkylation
+def: "The addition of an alkyl group." [CTDI:ctd_curators]
+synonym: "alk" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:6
+name: amination
+def: "The addition of an amine group." [CTDI:ctd_curators]
+synonym: "ami" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: CTDI:7
+name: ADP-ribosylation
+def: "The addition of a ADP-ribosyl group." [CTDI:ctd_curators]
+synonym: "arb" EXACT CTDCODE []
+is_a: CTDI:22
+
+[Term]
+id: CTDI:8
+name: cleavage
+def: "The processing or splitting of a molecule, not necessarily leading to the destruction of the molecule." [CTDI:ctd_curators]
+synonym: "clv" EXACT CTDCODE []
+is_a: GO:0009056 ! catabolic process
+
+[Term]
+id: CTDI:9
+name: carboxylation
+def: "The addition of a carboxyl group." [CTDI:ctd_curators]
+synonym: "cox" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0005488
+name: binding
+namespace: molecular_function
+def: "The selective, non-covalent, often stoichiometric, interaction of a molecule with one or more specific sites on another molecule." [GOC:ceb, GOC:mah, ISBN:0198506732 "Oxford Dictionary of Biochemistry and Molecular Biology"]
+comment: For ligands that bind to signal transducing receptors, consider the molecular function term 'receptor binding ; GO:0005102' and its children.
+synonym: "b" EXACT CTDCODE []
+xref: Wikipedia:Binding_(molecular)
+
+[Term]
+id: GO:0006487
+name: protein N-linked glycosylation
+namespace: biological_process
+def: "A protein glycosylation process in which a sugar unit is added to a protein via the N4 atom of peptidyl-asparagine, the omega-N of arginine, or the N1' atom peptidyl-tryptophan." [RESID:AA0151, RESID:AA0156, RESID:AA0327]
+subset: gosubset_prok
+synonym: "N-glycan biosynthesis" RELATED []
+synonym: "N-glycan metabolism" RELATED []
+synonym: "ngl" EXACT CTDCODE []
+synonym: "protein amino acid N-linked glycosylation" EXACT [GOC:bf]
+xref: RESID:AA0151
+xref: RESID:AA0156
+xref: RESID:AA0327
+is_a: GO:0070085 ! glycosylation
+
+[Term]
+id: GO:0006493
+name: protein O-linked glycosylation
+namespace: biological_process
+def: "A protein glycosylation process in which a sugar unit is added to a protein via the hydroxyl group of peptidyl-serine, peptidyl-threonine, peptidyl-hydroxylysine, or peptidyl-hydroxyproline, or via the phenol group of peptidyl-tyrosine, forming an O-glycan." [ISBN:0879695595, RESID:AA0153, RESID:AA0154, RESID:AA0155, RESID:AA0157, RESID:AA0212]
+subset: gosubset_prok
+synonym: "ogl" EXACT CTDCODE []
+synonym: "protein amino acid O-linked glycosylation" EXACT [GOC:bf]
+xref: RESID:AA0153
+xref: RESID:AA0154
+xref: RESID:AA0155
+xref: RESID:AA0157
+xref: RESID:AA0212
+is_a: GO:0070085 ! glycosylation
+
+[Term]
+id: GO:0006497
+name: protein lipidation
+namespace: biological_process
+alt_id: GO:0042050
+def: "The covalent attachment of lipid groups to an amino acid in a protein." [GOC:jl]
+comment: For non-covalent interactions with a lipid, consider instead the term 'lipid binding ; GO:0008289' and its children.
+subset: gosubset_prok
+synonym: "lip" EXACT CTDCODE []
+synonym: "lipid:protein modification" EXACT []
+synonym: "protein amino acid lipidation" EXACT [GOC:bf]
+synonym: "protein lipidation" EXACT []
+xref: RESID:AA0059
+xref: RESID:AA0060
+xref: RESID:AA0077
+xref: RESID:AA0078
+xref: RESID:AA0079
+xref: RESID:AA0080
+xref: RESID:AA0102
+xref: RESID:AA0103
+xref: RESID:AA0104
+xref: RESID:AA0106
+xref: RESID:AA0107
+xref: RESID:AA0158
+xref: RESID:AA0159
+xref: RESID:AA0160
+xref: RESID:AA0161
+xref: RESID:AA0162
+xref: RESID:AA0163
+xref: RESID:AA0166
+xref: RESID:AA0223
+xref: RESID:AA0290
+xref: RESID:AA0307
+xref: RESID:AA0308
+xref: RESID:AA0309
+xref: RESID:AA0316
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0006810
+name: transport
+namespace: biological_process
+alt_id: GO:0015457
+alt_id: GO:0015460
+def: "The directed movement of substances (such as macromolecules, small molecules, ions) into, out of or within a cell, or between cells, or within a multicellular organism by means of some agent such as a transporter or pore." [GOC:dph, GOC:jl, GOC:mah]
+subset: goslim_candida
+subset: goslim_generic
+subset: goslim_goa
+subset: goslim_pir
+subset: goslim_plant
+subset: goslim_pombe
+subset: goslim_yeast
+subset: gosubset_prok
+synonym: "auxiliary transport protein activity" RELATED [GOC:mah]
+synonym: "small molecule transport" NARROW []
+synonym: "solute:solute exchange" NARROW []
+synonym: "transport accessory protein activity" RELATED [GOC:mah]
+synonym: "trt" EXACT CTDCODE []
+
+[Term]
+id: GO:0008152
+name: metabolic process
+def: "The chemical reactions and pathways, including anabolism and catabolism, by which living organisms transform chemical substances. Metabolic processes typically transform small molecules, but also include macromolecular processes such as DNA repair and replication, and protein synthesis and degradation." [GOC:go_curators, ISBN:0198547684]
+comment: Note that metabolic processes do not include single functions or processes such as protein-protein interactions, protein-nucleic acids, nor receptor-ligand interactions.
+synonym: "met" EXACT CTDCODE []
+
+[Term]
+id: GO:0008380
+name: RNA splicing
+namespace: biological_process
+alt_id: GO:0006395
+def: "The process of removing sections of the primary RNA transcript to remove sequences not present in the mature form of the RNA and joining the remaining sections to form the mature form of the RNA." [GOC:krc, GOC:mah]
+subset: gosubset_prok
+synonym: "pre-mRNA splicing factor activity" RELATED []
+synonym: "spl" EXACT CTDCODE []
+xref: Reactome:1006447 "mRNA Splicing"
+xref: Reactome:1051751 "mRNA Splicing"
+xref: Reactome:1076708 "mRNA Splicing"
+xref: Reactome:1097222 "mRNA Splicing"
+xref: Reactome:1116507 "mRNA Splicing"
+xref: Reactome:1140327 "mRNA Splicing"
+xref: Reactome:1170576 "mRNA Splicing"
+xref: Reactome:1192393 "mRNA Splicing"
+xref: Reactome:1206583 "mRNA Splicing"
+xref: Reactome:1221220 "mRNA Splicing"
+xref: Reactome:1239204 "mRNA Splicing"
+xref: Reactome:1246834 "mRNA Splicing"
+xref: Reactome:1252579 "mRNA Splicing"
+xref: Reactome:1258368 "mRNA Splicing"
+xref: Reactome:1262057 "mRNA Splicing"
+xref: Reactome:72172 "mRNA Splicing"
+xref: Reactome:979854 "mRNA Splicing"
+xref: Wikipedia:RNA_splicing
+
+[Term]
+id: GO:0009056
+name: catabolic process
+namespace: biological_process
+def: "The chemical reactions and pathways resulting in the breakdown of substances, including the breakdown of carbon compounds with the liberation of energy for use by the cell or organism." [ISBN:0198547684]
+synonym: "deg" EXACT CTDCODE []
+xref: Wikipedia:Catabolism
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0010467
+name: gene expression
+namespace: biological_process
+def: "The process in which a gene's sequence is converted into a mature gene product or products (proteins or RNA). This includes the production of an RNA transcript as well as any processing to produce a mature RNA product or an mRNA (for protein-coding genes) and the translation of that mRNA into protein. Some protein processing events may be included when they are required to form an active form of a product from an inactive precursor form." [GOC:dph, GOC:tb]
+subset: gosubset_prok
+synonym: "exp" EXACT CTDCODE []
+xref: Reactome:1006441 "Gene Expression"
+xref: Reactome:1024783 "Gene Expression"
+xref: Reactome:1051745 "Gene Expression"
+xref: Reactome:1076702 "Gene Expression"
+xref: Reactome:1097220 "Gene Expression"
+xref: Reactome:1116505 "Gene Expression"
+xref: Reactome:1140321 "Gene Expression"
+xref: Reactome:1170570 "Gene Expression"
+xref: Reactome:1192387 "Gene Expression"
+xref: Reactome:1206581 "Gene Expression"
+xref: Reactome:1221214 "Gene Expression"
+xref: Reactome:1239198 "Gene Expression"
+xref: Reactome:1246779 "Gene Expression"
+xref: Reactome:1252532 "Gene Expression"
+xref: Reactome:1258323 "Gene Expression"
+xref: Reactome:1262022 "Gene Expression"
+xref: Reactome:1264209 "Gene Expression"
+xref: Reactome:1265616 "Gene Expression"
+xref: Reactome:1266830 "Gene Expression"
+xref: Reactome:74160 "Gene Expression"
+xref: Reactome:979848 "Gene Expression"
+xref: Wikipedia:Gene_expression
+
+[Term]
+id: GO:0010731
+name: protein glutathionylation
+namespace: biological_process
+def: "The protein modification process in which a glutathione molecule is added to a protein amino acid through a disulfide linkage." [GOC:BHF, GOC:dph, GOC:rl, GOC:tb]
+synonym: "glt" EXACT CTDCODE []
+synonym: "protein amino acid glutathionylation" EXACT [GOC:bf]
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0016310
+name: phosphorylation
+namespace: biological_process
+def: "The process of introducing a phosphate group into a molecule, usually with the formation of a phosphoric ester, a phosphoric anhydride or a phosphoric amide." [ISBN:0198506732 "Oxford Dictionary of Biochemistry and Molecular Biology"]
+subset: gosubset_prok
+synonym: "pho" EXACT CTDCODE []
+xref: Wikipedia:Phosphorylation
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0016567
+name: protein ubiquitination
+namespace: biological_process
+def: "The process in which one or more ubiquitin groups are added to a protein." [GOC:ai]
+synonym: "protein ubiquitinylation" EXACT []
+synonym: "protein ubiquitylation" EXACT []
+synonym: "ubq" EXACT CTDCODE []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0016925
+name: protein sumoylation
+namespace: biological_process
+alt_id: GO:0006485
+alt_id: GO:0016927
+def: "The process in which a SUMO protein (small ubiquitin-related modifier) is conjugated to a target protein via an isopeptide bond between the carboxyl terminus of SUMO with an epsilon-amino group of a lysine residue of the target protein." [GOC:jl, PMID:11265250]
+synonym: "protein sumolation" EXACT []
+synonym: "small ubiquitin-related protein 1 conjugation" EXACT []
+synonym: "sum" EXACT CTDCODE []
+synonym: "SUMO-protein conjugation" EXACT []
+synonym: "sumoylation" EXACT []
+xref: Wikipedia:SUMO_protein
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0017014
+name: protein nitrosylation
+namespace: biological_process
+def: "The covalent addition of a nitric oxide group to an amino acid within a protein." [GOC:ai, PMID:20972426]
+subset: gosubset_prok
+synonym: "nit" EXACT CTDCODE []
+synonym: "protein amino acid nitrosylation" EXACT [GOC:bf]
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0018175
+name: protein nucleotidylation
+namespace: biological_process
+def: "The addition of a nucleotide to a protein amino acid." [GOC:ai]
+subset: gosubset_prok
+synonym: "nuc" EXACT CTDCODE []
+synonym: "protein amino acid nucleotidylation" EXACT [GOC:bf]
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0018342
+name: protein prenylation
+namespace: biological_process
+alt_id: GO:0018346
+def: "The covalent attachment of a prenyl group to a protein; geranyl, farnesyl, or geranylgeranyl groups may be added." [ISBN:0198506732 "Oxford Dictionary of Biochemistry and Molecular Biology"]
+subset: gosubset_prok
+synonym: "C-terminal protein prenylation" NARROW []
+synonym: "pre" EXACT CTDCODE []
+synonym: "protein amino acid prenylation" EXACT [GOC:bf]
+is_a: GO:0006497 ! protein lipidation
+
+[Term]
+id: GO:0018343
+name: protein farnesylation
+namespace: biological_process
+alt_id: GO:0018347
+def: "The covalent attachment of a farnesyl group to a protein." [GOC:jl]
+subset: gosubset_prok
+synonym: "C-terminal protein farnesylation" NARROW []
+synonym: "far" EXACT CTDCODE []
+synonym: "protein amino acid farnesylation" EXACT [GOC:bf]
+is_a: GO:0006497 ! protein lipidation
+
+[Term]
+id: GO:0018345
+name: protein palmitoylation
+namespace: biological_process
+alt_id: GO:0018318
+alt_id: GO:0018349
+def: "The covalent attachment of a palmitoyl group to a protein." [GOC:jl, PMID:15520806]
+subset: gosubset_prok
+synonym: "<pal>" RELATED []
+synonym: "pal" EXACT CTDCODE []
+synonym: "protein amino acid palmitoylation" EXACT [GOC:bf]
+is_a: GO:0006497 ! protein lipidation
+
+
+[Term]
+id: GO:0018377
+name: protein myristoylation
+namespace: biological_process
+alt_id: GO:0018319
+def: "The covalent attachment of a myristoyl group to a protein." [GOC:ai]
+subset: gosubset_prok
+synonym: "myr" EXACT CTDCODE []
+synonym: "protein amino acid myristoylation" EXACT [GOC:bf]
+is_a: GO:0006497 ! protein lipidation
+
+[Term]
+id: GO:0018411
+name: protein glucuronidation
+namespace: biological_process
+def: "The modification of a protein by amino acid glucuronidation." [GOC:ai]
+subset: gosubset_prok
+synonym: "glc" EXACT CTDCODE []
+synonym: "protein amino acid glucuronidation" EXACT [GOC:bf]
+is_a: GO:0070085 ! glycosylation
+
+[Term]
+id: GO:0032259
+name: methylation
+namespace: biological_process
+def: "The process in which a methyl group is covalently attached to a molecule." [GOC:mah]
+synonym: "myl" EXACT CTDCODE []
+xref: Reactome:1006567 "Methylation"
+xref: Reactome:1024884 "Methylation"
+xref: Reactome:1051871 "Methylation"
+xref: Reactome:1076824 "Methylation"
+xref: Reactome:1097328 "Methylation"
+xref: Reactome:1116621 "Methylation"
+xref: Reactome:1140446 "Methylation"
+xref: Reactome:1170691 "Methylation"
+xref: Reactome:1192489 "Methylation"
+xref: Reactome:1206864 "Methylation"
+xref: Reactome:1221409 "Methylation"
+xref: Reactome:1239392 "Methylation"
+xref: Reactome:1246869 "Methylation"
+xref: Reactome:1252723 "Methylation"
+xref: Reactome:1258533 "Methylation"
+xref: Reactome:1262147 "Methylation"
+xref: Reactome:1264263 "Methylation"
+xref: Reactome:1265699 "Methylation"
+xref: Reactome:156581 "Methylation"
+xref: Reactome:979970 "Methylation"
+xref: Wikipedia:Methylation
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0042221
+name: response to chemical stimulus
+namespace: biological_process
+def: "A change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a chemical stimulus." [GOC:jl]
+subset: goslim_candida
+subset: goslim_yeast
+subset: gosubset_prok
+synonym: "rec" EXACT CTDCODE []
+synonym: "response to chemical substance" EXACT []
+
+[Term]
+id: GO:0046903
+name: secretion
+namespace: biological_process
+def: "The controlled release of a substance by a cell, a group of cells, or a tissue." [GOC:ai]
+subset: goslim_goa
+subset: goslim_pir
+subset: gosubset_prok
+synonym: "sec" EXACT CTDCODE []
+is_a: GO:0006810 ! transport
+
+[Term]
+id: GO:0046944
+name: protein carbamoylation
+namespace: biological_process
+def: "The addition of a carbamoyl group to a protein amino acid. A carbamoyl group is the acyl group -CO-NH2." [GOC:ai]
+subset: gosubset_prok
+synonym: "car" EXACT CTDCODE []
+synonym: "protein amino acid carbamoylation" EXACT [GOC:bf]
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0051179
+name: localization
+namespace: biological_process
+def: "Any process in which a cell, a substance, or a cellular entity, such as a protein complex or organelle, is transported to, and/or maintained in a specific location." [GOC:ai]
+subset: goslim_pir
+subset: gosubset_prok
+synonym: "establishment and maintenance of cellular component location" NARROW []
+synonym: "establishment and maintenance of localization" EXACT []
+synonym: "establishment and maintenance of position" EXACT []
+synonym: "establishment and maintenance of substance location" NARROW []
+synonym: "establishment and maintenance of substrate location" NARROW []
+synonym: "loc" EXACT CTDCODE []
+synonym: "localisation" EXACT [GOC:mah]
+
+[Term]
+id: GO:0051923
+name: sulfation
+namespace: biological_process
+def: "The addition of a sulfate group to a molecule." [http://www.onelook.com]
+subset: gosubset_prok
+synonym: "phase II metabolism" BROAD [PMID:20056724]
+synonym: "sul" EXACT CTDCODE []
+synonym: "sulfonation" EXACT []
+synonym: "sulfur addition" EXACT []
+synonym: "sulphation" EXACT []
+synonym: "sulphur addition" EXACT []
+is_a: GO:0008152 ! metabolic process
+
+[Term]
+id: GO:0070085
+name: glycosylation
+namespace: biological_process
+def: "The covalent attachment of a glycosyl residue to a substrate molecule." [GOC:mah]
+synonym: "gly" EXACT CTDCODE []
+xref: Wikipedia:Glycosylation
+is_a: GO:0008152 ! metabolic process
+

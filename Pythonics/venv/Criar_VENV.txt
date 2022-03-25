@@ -1,0 +1,14 @@
+para criar digitar
+python3 -m venv venv
+
+criar a pasta .vs.codde
+criar o o arquivo setting.json
+adicionar o code de configuracao no setting
+
+
+https://www.youtube.com/watch?v=ZQ60SJDACuc
+
+https://docs.python.org/3/tutorial/venv.html
+
+Preciso ler:
+https://code.visualstudio.com/docs/python/environments

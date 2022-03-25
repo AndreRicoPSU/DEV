@@ -1,0 +1,4 @@
+para rodar o snakeviz sem codigo
+pip install snakeviz
+python -m cProfile -o addition.prof addition.py
+snakeviz addition.prof

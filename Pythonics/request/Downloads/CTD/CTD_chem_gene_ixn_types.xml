@@ -1,0 +1,332 @@
+<?xml version="1.0"?>
+<!--
+  The Comparative Toxicogenomics Database (CTD) - http://ctdbase.org/
+    Copyright 2002-2012 MDI Biological Laboratory. All rights reserved.
+    Copyright 2012-2016 MDI Biological Laboratory & NC State University. All rights reserved.
+
+  Use is subject to the terms set forth at http://ctdbase.org/about/legal.jsp
+  These terms include:
+  
+    1. All forms of publication that use or rely on CTD data (e.g., 
+       web sites, research papers, databases, applications, products, etc.)
+       must cite CTD.
+       Citation guidelines: http://ctdbase.org/about/publications/#citing
+  
+    2. All electronic or online applications must include hyperlinks from 
+       contexts that use CTD data to the applicable CTD data pages.
+       Linking instructions: http://ctdbase.org/help/linking.jsp
+  
+    3. You must notify CTD and describe how you are using the our data:
+       http://ctdbase.org/help/contact.go
+  
+  More information: http://ctdbase.org/downloads/
+  
+  Report created: Fri Jul 06 11:10:38 EDT 2012
+
+-->
+<RowSet>
+<Row>
+<TypeName>abundance</TypeName>
+<Code>abu</Code>
+<Description>The abundance of a chemical (if chemical synthesis is not known).</Description>
+</Row>
+<Row>
+<TypeName>activity</TypeName>
+<Code>act</Code>
+<Description>An elemental function of a molecule.</Description>
+</Row>
+<Row>
+<TypeName>binding</TypeName>
+<Code>b</Code>
+<Description>A molecular interaction.</Description>
+</Row>
+<Row>
+<TypeName>cotreatment</TypeName>
+<Code>w</Code>
+<Description>Involving the use of two or more chemicals simultaneously.</Description>
+</Row>
+<Row>
+<TypeName>expression</TypeName>
+<Code>exp</Code>
+<Description>The expression of a gene product.</Description>
+</Row>
+<Row>
+<TypeName>folding</TypeName>
+<Code>fol</Code>
+<Description>The bending and positioning of a molecule to achieve conformational integrity.</Description>
+</Row>
+<Row>
+<TypeName>localization</TypeName>
+<Code>loc</Code>
+<Description>Part of the cell where a molecule resides.</Description>
+</Row>
+<Row>
+<TypeName>metabolic processing</TypeName>
+<Code>met</Code>
+<Description>The biochemical alteration of a molecule&apos;s structure (does not include changes in expression, stability, folding, localization, splicing, or transport).</Description>
+</Row>
+<Row>
+<TypeName>acetylation</TypeName>
+<Code>ace</Code>
+<Description>The addition of an acetyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>acylation</TypeName>
+<Code>acy</Code>
+<Description>The addition of an acyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>alkylation</TypeName>
+<Code>alk</Code>
+<Description>The addition of an alkyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>amination</TypeName>
+<Code>ami</Code>
+<Description>The addition of an amine group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>carbamoylation</TypeName>
+<Code>car</Code>
+<Description>The addition of a carbamoyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>carboxylation</TypeName>
+<Code>cox</Code>
+<Description>The addition of a carboxyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>chemical synthesis</TypeName>
+<Code>csy</Code>
+<Description>A biochemical event resulting in a new chemical product.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>degradation</TypeName>
+<Code>deg</Code>
+<Description>Catabolism or breakdown.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>cleavage</TypeName>
+<Code>clv</Code>
+<Description>The processing or splitting of a molecule, not necessarily leading to the destruction of the molecule.</Description>
+<ParentCode>deg</ParentCode>
+</Row>
+<Row>
+<TypeName>hydrolysis</TypeName>
+<Code>hyd</Code>
+<Description>The splitting of a molecule via the specific use of water.</Description>
+<ParentCode>clv</ParentCode>
+</Row>
+<Row>
+<TypeName>ethylation</TypeName>
+<Code>eth</Code>
+<Description>The addition of an ethyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>glutathionylation</TypeName>
+<Code>glt</Code>
+<Description>The addition of a glutathione group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>glycation</TypeName>
+<Code>gyc</Code>
+<Description>The non-enzymatic addition of a sugar.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>glycosylation</TypeName>
+<Code>gly</Code>
+<Description>The addition of a sugar group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>glucuronidation</TypeName>
+<Code>glc</Code>
+<Description>The addition of a sugar group to form a glucuronide, typically part of an inactivating or detoxifying reaction.</Description>
+<ParentCode>gly</ParentCode>
+</Row>
+<Row>
+<TypeName>N-linked glycosylation</TypeName>
+<Code>ngl</Code>
+<Description>The addition of a sugar group to an amide nitrogen.</Description>
+<ParentCode>gly</ParentCode>
+</Row>
+<Row>
+<TypeName>O-linked glycosylation</TypeName>
+<Code>ogl</Code>
+<Description>The addition of a sugar group to a hydroxyl group.</Description>
+<ParentCode>gly</ParentCode>
+</Row>
+<Row>
+<TypeName>hydroxylation</TypeName>
+<Code>hdx</Code>
+<Description>The addition of a hydroxy group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>lipidation</TypeName>
+<Code>lip</Code>
+<Description>The addition of a lipid group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>farnesylation</TypeName>
+<Code>far</Code>
+<Description>The addition of a farnesyl group.</Description>
+<ParentCode>lip</ParentCode>
+</Row>
+<Row>
+<TypeName>geranoylation</TypeName>
+<Code>ger</Code>
+<Description>The addition of a geranoyl group.</Description>
+<ParentCode>lip</ParentCode>
+</Row>
+<Row>
+<TypeName>myristoylation</TypeName>
+<Code>myr</Code>
+<Description>The addition of a myristoyl group.</Description>
+<ParentCode>lip</ParentCode>
+</Row>
+<Row>
+<TypeName>palmitoylation</TypeName>
+<Code>pal</Code>
+<Description>The addition of a palmitoyl group.</Description>
+<ParentCode>lip</ParentCode>
+</Row>
+<Row>
+<TypeName>prenylation</TypeName>
+<Code>pre</Code>
+<Description>The addition of a prenyl group.</Description>
+<ParentCode>lip</ParentCode>
+</Row>
+<Row>
+<TypeName>methylation</TypeName>
+<Code>myl</Code>
+<Description>The addition of a methyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>nitrosation</TypeName>
+<Code>nit</Code>
+<Description>The addition of a nitroso or nitrosyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>nucleotidylation</TypeName>
+<Code>nuc</Code>
+<Description>The addition of a nucleotidyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>oxidation</TypeName>
+<Code>oxd</Code>
+<Description>The loss of electrons.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>phosphorylation</TypeName>
+<Code>pho</Code>
+<Description>The addition of a phosphate group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>reduction</TypeName>
+<Code>red</Code>
+<Description>The gain of electrons.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>ribosylation</TypeName>
+<Code>rib</Code>
+<Description>The addition of a ribosyl group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>ADP-ribosylation</TypeName>
+<Code>arb</Code>
+<Description>The addition of a ADP-ribosyl group.</Description>
+<ParentCode>rib</ParentCode>
+</Row>
+<Row>
+<TypeName>sulfation</TypeName>
+<Code>sul</Code>
+<Description>The addition of a sulfate group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>sumoylation</TypeName>
+<Code>sum</Code>
+<Description>The addition of a SUMO group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>ubiquitination</TypeName>
+<Code>ubq</Code>
+<Description>The addition of an ubiquitin group.</Description>
+<ParentCode>met</ParentCode>
+</Row>
+<Row>
+<TypeName>mutagenesis</TypeName>
+<Code>mut</Code>
+<Description>The genetic alteration of a gene product.</Description>
+</Row>
+<Row>
+<TypeName>reaction</TypeName>
+<Code>rxn</Code>
+<Description>Any general biochemical or molecular event.</Description>
+</Row>
+<Row>
+<TypeName>response to substance</TypeName>
+<Code>rec</Code>
+<Description>Resistance or sensitivity to a substance.</Description>
+</Row>
+<Row>
+<TypeName>splicing</TypeName>
+<Code>spl</Code>
+<Description>The removal of introns to generate mRNA.</Description>
+</Row>
+<Row>
+<TypeName>stability</TypeName>
+<Code>sta</Code>
+<Description>Overall molecular integrity.</Description>
+</Row>
+<Row>
+<TypeName>transport</TypeName>
+<Code>trt</Code>
+<Description>The movement of a molecule into or out of a cell.</Description>
+</Row>
+<Row>
+<TypeName>secretion</TypeName>
+<Code>sec</Code>
+<Description>The movement of a molecule out of a cell (by less specific means than export).</Description>
+<ParentCode>trt</ParentCode>
+</Row>
+<Row>
+<TypeName>export</TypeName>
+<Code>ext</Code>
+<Description>The movement of a molecule out of a cell (by more specific means than secretion).</Description>
+<ParentCode>sec</ParentCode>
+</Row>
+<Row>
+<TypeName>uptake</TypeName>
+<Code>upt</Code>
+<Description>The movement of a molecule into a cell (by less specific means than import).</Description>
+<ParentCode>trt</ParentCode>
+</Row>
+<Row>
+<TypeName>import</TypeName>
+<Code>imt</Code>
+<Description>The movement of a molecule into a cell (by more specific means than uptake).</Description>
+<ParentCode>upt</ParentCode>
+</Row>
+</RowSet>

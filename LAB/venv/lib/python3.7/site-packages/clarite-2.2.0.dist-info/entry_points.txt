@@ -1,0 +1,3 @@
+[console_scripts]
+clarite-cli=clarite.cli:entry_point
+
