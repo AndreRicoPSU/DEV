@@ -71,7 +71,7 @@ def conv_l(i):
 
 
 # @profile
-for train_seed, test_seed in zip(range(0, 1), range(2000, 2001)):
+for train_seed, test_seed in zip(range(0, 10), range(2000, 2010)):
 
     ALL_RESULTS_ENCODING = pd.DataFrame()
     ALL_RESULTS_ENCODING_EDGE = pd.DataFrame()

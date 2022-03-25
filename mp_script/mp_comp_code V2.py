@@ -15,6 +15,7 @@ def conv_u(i):
         "SUP": "SUPER_ADDITIVE",
         "DOM": "DOMINANT",
         "HET": "HET",
+        "NUL": "ADDITIVE",
     }
     return switcher.get(i, "Invalid Group")
 
@@ -27,13 +28,14 @@ def conv_l(i):
         "SUP": "Super_Additive",
         "DOM": "Dominant",
         "HET": "Heterozygous",
+        "NUL": "NULL",
     }
     return switcher.get(i, "Invalid Group")
 
 
 def simulations(seed):
 
-    train_seed = seed
+    train_seed = seed + 1000
     test_seed = seed + 2000
 
     ALL_RESULTS_ENCODING = pd.DataFrame()
@@ -174,25 +176,30 @@ def simulations(seed):
 
 
 def mp_treads():
-
-    FINAL_RESULTS_ENCODING = pd.DataFrame()
     FINAL_RESULTS_EDGE_ALPHA = pd.DataFrame()
+    FINAL_RESULTS_ENCODING = pd.DataFrame()
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
+        future_to = {executor.submit(simulations, n): n for n in n_loops}
 
-        results = executor.map(simulations, n_loops)
+        for future in concurrent.futures.as_completed(future_to):
 
-        for ALL_RESULTS_EDGE_ALPHA, ALL_RESULTS_ENCODING in results:
+            data = future.result()
+            data_0 = pd.DataFrame(data[0])
+            data_1 = pd.DataFrame(data[1])
+
             FINAL_RESULTS_EDGE_ALPHA = pd.concat(
-                [FINAL_RESULTS_EDGE_ALPHA, ALL_RESULTS_EDGE_ALPHA], axis=0)
-        FINAL_RESULTS_ENCODING = pd.concat(
-            [FINAL_RESULTS_ENCODING, ALL_RESULTS_ENCODING], axis=0)
+                [FINAL_RESULTS_EDGE_ALPHA, data_0], axis=0)
+            FINAL_RESULTS_ENCODING = pd.concat(
+                [FINAL_RESULTS_ENCODING, data_1], axis=0)
 
-        FINAL_RESULTS_EDGE_ALPHA.to_csv(
-            f"{output_path}/RESULTS_EDGE_ALPHA_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt", sep=";")
+            #FINAL_RESULTS_EDGE_ALPHA = pd.concat([FINAL_RESULTS_EDGE_ALPHA, data_0], axis=0)
 
-        FINAL_RESULTS_ENCODING.to_csv(
-            f"{output_path}/RESULTS_ENCODING_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt", sep=";")
+    FINAL_RESULTS_EDGE_ALPHA.to_csv(
+        f"{output_path}/RESULTS_EDGE_ALPHA_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt", sep=";")
+
+    FINAL_RESULTS_ENCODING.to_csv(
+        f"{output_path}/RESULTS_ENCODING_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt", sep=";")
 
     print(f"Finished in {round(time.perf_counter()-start,2)} second(s)")
 
@@ -205,7 +212,7 @@ if __name__ == "__main__":
     variant2 = scalars.Variant("1", 2, id="rs2", ref="G", alt=["T"])
 
     # Define Case-Control ratio
-    num_samples = 1000
+    num_samples = 5000
     case_control_ratio = "1:3"
     n_cases = int(num_samples / 4)
     n_controls = num_samples - n_cases
@@ -213,7 +220,7 @@ if __name__ == "__main__":
     PEN_DIFF = 0.25
     MAFA = 0.05
     MAFB = 0.05
-    SNR = 0.01
+    SNR = 0.05
 
     # Interations for Train and Test
     n_loops = range(10)
@@ -224,7 +231,8 @@ if __name__ == "__main__":
         ["ADD", "ADD"],
         ["SUP", "ADD"],
         ["DOM", "ADD"],
-        ["HET", "ADD"])
+        ["HET", "ADD"],
+        ["NUL", "ADD"])
 
     encoding = ("Additive", "DOMDEV", "Recessive",
                 "Dominant", "Codominant", "EDGE")
