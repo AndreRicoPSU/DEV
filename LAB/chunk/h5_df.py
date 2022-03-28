@@ -9,6 +9,13 @@ from typing import Optional, Union
 from psutil import swap_memory
 
 
+def get_cicles(INPUT: Union[str, Path]):
+    h5_file = Path(str(INPUT) + ".h5")
+    hdf = pd.HDFStore(h5_file, "r")
+    CICLES = hdf.get("cicles")
+    return CICLES[0]
+
+
 def create_variant(variant_info_row):
     variant_id = str(variant_info_row["variant_id"])
     a1 = str(variant_info_row["allele1"])
@@ -36,9 +43,8 @@ def create_variant(variant_info_row):
     return variant
 
 
-def xxx(
+def get_db(
     input: Union[str, Path],
-    output: Union[str, Path],
     db_cicle,
     v_category,
     swap_alleles,
@@ -61,9 +67,11 @@ def xxx(
     if v_category:  # categorical for phenotype
         DEFAULT_CAT_MAP = {1: "Control", 2: "Case"}
         df_samples["phenotype"] = df_samples["phenotype"].astype("category")
-        df_samples["phenotype"].cat.rename_categories(DEFAULT_CAT_MAP, inplace=True)
+        df_samples["phenotype"].cat.rename_categories(
+            DEFAULT_CAT_MAP, inplace=True)
         df_samples.loc[
-            ~df_samples["phenotype"].isin(DEFAULT_CAT_MAP.values()), "phenotype"
+            ~df_samples["phenotype"].isin(
+                DEFAULT_CAT_MAP.values()), "phenotype"
         ] = None
 
     # VARIANTS - FROM BIM [HDF/BIM/VARIANTS_X]
@@ -83,7 +91,8 @@ def xxx(
 
     variant_list = [create_variant(row) for idx, row in df_variant.iterrows()]
 
-    print(f"\tLoaded information for {len(variant_list)} variants from '{hdf}'")
+    print(
+        f"\tLoaded information for {len(variant_list)} variants from '{hdf}'")
 
     # GENOTYPES - FROM BED [HDF/BED/GENOTYPE_X]
 
@@ -98,7 +107,8 @@ def xxx(
     # for v_idx, variant in variant_list["variant_id"].items():
     for v_idx, variant in enumerate(variant_list):
         test = np.unpackbits(gt_bytes[v_idx])
-        genotypes = np.flip(np.unpackbits(gt_bytes[v_idx]).reshape(-1, 4, 2), axis=1)
+        genotypes = np.flip(np.unpackbits(
+            gt_bytes[v_idx]).reshape(-1, 4, 2), axis=1)
         genotypes = genotypes.reshape(-1, 2)[: len(df_samples)]
         missing_gt = (genotypes == (0, 1)).all(axis=1)
         genotypes[missing_gt] = (MISSING_IDX, MISSING_IDX)
@@ -128,10 +138,12 @@ def xxx(
 
 # print(f"\tLoaded information for {len(variant_list)} variants from '{hdf}'")
 
-
+"""
 if __name__ == "__main__":
-    DATA_DIR_IN = Path(__file__).parent / "0_data" / "output"
-    DATA_DIR_OUT = Path(__file__).parent / "0_data" / "output"
+    DATA_DIR_IN = Path(__file__).parent.parent.parent / \
+        "Data" / "chunck" / "0_data" / "output"
+    DATA_DIR_OUT = Path(__file__).parent.parent.parent / \
+        "Data" / "chunck" / "0_data" / "output"
     input = DATA_DIR_IN / "plink_test_small"
     output = DATA_DIR_OUT / "plink_test_small"
     db_cicle = 0
@@ -140,3 +152,4 @@ if __name__ == "__main__":
 
     v_temp = xxx(input, output, db_cicle, v_category, swap_alleles)
     print("done")
+"""

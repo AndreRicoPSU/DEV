@@ -15,7 +15,8 @@ def fam(fam_file, output_file):
     hdf.put(str("/fam/samples"), df)
     hdf.flush()
     hdf.close()
-    print(f"\tLoaded information for {v_samples} samples from '{fam_file.name}'")
+    print(
+        f"\tLoaded information for {v_samples} samples from '{fam_file.name}'")
     return v_samples
 
 
@@ -35,15 +36,20 @@ def bim(bim_file, output_file, v_chunk):
     # for idx, x in np.ndenumerate(variant_splitted):
     for x in range(v_cicles):
         base = pd.DataFrame(variant_splitted[x], dtype=object)
+        basen = pd.DataFrame({
+            "chromosome": base[0].astype(np.int16),
+            "variant_id": base[1].astype(np.str0),
+            "position": base[2].astype(np.int16),
+            "coordinate": base[3].astype(np.int16),
+            "allele1": base[4].astype(np.str0),
+            "allele2": base[5].astype(np.str0)
+        })  # Create this way to avoid warning performance mensage
         dataset = str("/bim/variants_" + str(x))
-        hdf.put(dataset, base)
+        hdf.put(dataset, basen)
         hdf.flush()
         print(f"\tAdd datas to dataset {dataset}")
-
-    result = v_cicles
     hdf.close()
-
-    return result
+    return v_cicles
 
 
 def bed(bed_file, samples, v_cicles, output_file):
@@ -54,7 +60,7 @@ def bed(bed_file, samples, v_cicles, output_file):
 
     # Ensure the file is valid
     CORRECT_FIRST_BYTES = np.array([108, 27, 1], dtype="uint8")
-    if not (gt_bytes[:3] == CORRECT_FIRST_BYTES).all():
+    if not (gt_bytes[: 3] == CORRECT_FIRST_BYTES).all():
         raise ValueError(
             f"The first 3 bytes {bed_file.name} were not correct.  The file may be corrupted."
         )
@@ -69,7 +75,7 @@ def bed(bed_file, samples, v_cicles, output_file):
 
     # for idx, x in np.ndenumerate(variant_splitted):
     for x in range(v_cicles):
-        base = pd.DataFrame(gt_bytes_splitted[x], dtype=object)
+        base = pd.DataFrame(gt_bytes_splitted[x], dtype=np.int16)
         dataset = str("/bed/genotype_" + str(x))
         hdf.put(dataset, base)
         hdf.flush()
@@ -82,6 +88,8 @@ def bed(bed_file, samples, v_cicles, output_file):
 
 def from_plink(
     input: Union[str, Path], output: Union[str, Path], v_chunk: Optional[int] = None
+
+
 ):
 
     # All three files are used
@@ -104,13 +112,16 @@ def from_plink(
     v_cicles = bim(bim_file, output_file, v_chunk)
     genotypes = bed(bed_file, samples, v_cicles, output_file)
 
-    return "OK"
+    return v_cicles
 
 
-# SI
+"""
+# TEST INSIDE
 if __name__ == "__main__":
-    DATA_DIR_IN = Path(__file__).parent / "0_data" / "plink"
-    DATA_DIR_OUT = Path(__file__).parent / "0_data" / "output"
+    DATA_DIR_IN = Path(__file__).parent.parent.parent / \
+        "Data" / "chunck" / "0_data" / "plink"
+    DATA_DIR_OUT = Path(__file__).parent.parent.parent / \
+        "Data" / "chunck" / "0_data" / "output"
     input = DATA_DIR_IN / "plink_test_small"
     output = DATA_DIR_OUT / "plink_test_small"
     # input = DATA_DIR_IN / "sim_plink"
@@ -126,3 +137,4 @@ if __name__ == "__main__":
     result = from_plink(input, output, 2000)
 
     print("---->>>  Process finished with status: ", result)
+"""
