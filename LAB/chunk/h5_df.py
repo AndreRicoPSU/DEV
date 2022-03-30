@@ -52,7 +52,7 @@ def get_db(
     input = str(input)
     h5_file = Path(input + ".h5")
     hdf = pd.HDFStore(h5_file, "r")
-    print(hdf.info())  # Print structure of the file
+    # print(hdf.info())  # Print structure of the file
 
     # SAMPLES - FROM FAM FOLDER/
     df_samples = hdf.get("/fam/samples")
@@ -67,8 +67,8 @@ def get_db(
     if v_category:  # categorical for phenotype
         DEFAULT_CAT_MAP = {1: "Control", 2: "Case"}
         df_samples["phenotype"] = df_samples["phenotype"].astype("category")
-        df_samples["phenotype"].cat.rename_categories(
-            DEFAULT_CAT_MAP, inplace=True)
+        df_samples["phenotype"] = df_samples["phenotype"].cat.rename_categories(
+            DEFAULT_CAT_MAP)
         df_samples.loc[
             ~df_samples["phenotype"].isin(
                 DEFAULT_CAT_MAP.values()), "phenotype"
@@ -78,6 +78,7 @@ def get_db(
 
     df_variant = hdf.get(str("/bim/variants_" + str(db_cicle)))
 
+    """
     df_variant.columns = [
         "chromosome",
         "variant_id",
@@ -85,7 +86,8 @@ def get_db(
         "coordinate",
         "allele1",
         "allele2",
-    ]
+    ]  # It is not more necessary
+    """
 
     df_variant["chromosome"] = df_variant["chromosome"].astype("category")
 
@@ -106,7 +108,7 @@ def get_db(
 
     # for v_idx, variant in variant_list["variant_id"].items():
     for v_idx, variant in enumerate(variant_list):
-        test = np.unpackbits(gt_bytes[v_idx])
+        #test = np.unpackbits(gt_bytes[v_idx])
         genotypes = np.flip(np.unpackbits(
             gt_bytes[v_idx]).reshape(-1, 4, 2), axis=1)
         genotypes = genotypes.reshape(-1, 2)[: len(df_samples)]
@@ -129,14 +131,16 @@ def get_db(
         [df_samples, pd.DataFrame.from_dict(gt_array_dict)], axis=1
     )  # maybe isn't necessary
 
-    df_samples = df_samples.set_index(
-        ["FID", "IID", "IID_father", "IID_mother", "sex", "phenotype"]
-    )
+    # df_samples = df_samples.set_index(
+    #    ["FID", "IID", "IID_father", "IID_mother", "sex", "phenotype"]
+    # )
+
+    hdf.close()
 
     return df_samples
 
-
 # print(f"\tLoaded information for {len(variant_list)} variants from '{hdf}'")
+
 
 """
 if __name__ == "__main__":

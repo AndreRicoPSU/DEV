@@ -1,14 +1,15 @@
 
 from plink_h5 import *
 from h5_df import *
+import clarite
 
 # Enter with the user parameters:
 usr_file_name = "plink_test_small"
 usr_qtd_variants = 2000
 usr_category = True
 usr_swap_alleles = False
-usr_extract_plink = True
-usr_extract_hdf5 = False
+usr_extract_plink = False
+usr_extract_hdf5 = True
 usr_data_dir_in = Path(__file__).parent.parent.parent / \
     "Data" / "chunck" / "0_data" / "plink"
 usr_data_dir_out = Path(__file__).parent.parent.parent / \
@@ -36,9 +37,24 @@ if __name__ == "__main__":
             v_db_genomic = get_db(int_output, v_cicle,
                                   usr_category, usr_swap_alleles)
 
-            # Here we have a DataFrame with n Variants with all samples
-            # Add the sprint code
+            print("Cicle", v_cicle)
 
-        print("loop done")
+            # Here we have a DataFrame with n Variants with all samples
+            v_db_genomic.reset_index
+            v_db_genomic.droplevel(level=0)
+            print(v_db_genomic)
+
+            v_db_genomic.drop("FID", axis=1, inplace=True)
+
+            #df = v_db_genomic.drop(v_db_genomic.columns[0], axis=1)
+            #df.drop('column_name', axis=1, inplace=True)
+            # results_me = clarite.analyze.association_study(
+            #    data=v_db_genomic, outcomes="phenotype")
+            # Add the sprint code
+            # Test with CLARITE call
+            # Add the outcome results file or return to .h5
+
+        print("--->>>  HDF5 file was read success with",
+              v_db_cicle, "datasets reads")
 
     print("done")

@@ -208,21 +208,29 @@ for c in chunck(coordinates, 2):
 print(store.select_column("df_dc", "index"))
 print(store.select_column("df_dc", "string"))
 
+
 # select coordinates
 df_coord = pd.DataFrame(np.random.randn(
     1000, 2), index=pd.date_range("20000101", periods=1000))
-store.append("df_coord", df_coord)
+store.append("df_coord", df_coord)ß
 c = store.select_as_coordinates("df_coord", "index > 20020101")
 print(c)
 print(store.select("df_coord", where=c))
+
+
 
 # Selecting using a where mask
 df_mask = pd.DataFrame(np.random.randn(
     1000, 2), index=pd.date_range("20000101", periods=1000))
 store.append("df_mask", df_mask)
+
 c = store.select_column("df_mask", "index")
+
 where = c[pd.DatetimeIndex(c).month == 5].index
+
 store.select("df_mask", where=where)
+
+
 
 # Storer Object
 print(store.get_storer("df_dc").nrows)

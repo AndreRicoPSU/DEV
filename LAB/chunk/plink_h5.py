@@ -88,8 +88,6 @@ def bed(bed_file, samples, v_cicles, output_file):
 
 def from_plink(
     input: Union[str, Path], output: Union[str, Path], v_chunk: Optional[int] = None
-
-
 ):
 
     # All three files are used

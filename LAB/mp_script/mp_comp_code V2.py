@@ -223,7 +223,7 @@ if __name__ == "__main__":
     SNR = 0.05
 
     # Interations for Train and Test
-    n_loops = range(10)
+    n_loops = range(1)
 
     work_group = (
         ["REC", "ADD"],
