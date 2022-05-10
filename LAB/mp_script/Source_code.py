@@ -17,8 +17,8 @@ num_samples = 1000
 case_control_ratio = "1:3"
 n_cases = int(num_samples / 4)
 n_controls = num_samples - n_cases
-PEN_BASE = 0.05
-PEN_DIFF = 0.25
+PEN_BASE = 0.35
+PEN_DIFF = 0.45
 MAFA = 0.05
 MAFB = 0.05
 SNR = 0.01
@@ -35,10 +35,13 @@ NULL_Results_Final = pd.DataFrame()
 All_Results_Final = pd.DataFrame()
 
 
-for train_seed, test_seed in zip(range(0, 100), range(2000, 2010)):
+for train_seed, test_seed in zip(range(0, 1), range(2000, 2001)):
     startcycle = time.time()
     # Recessive Main Effect for SNP1 without interaction
     # Training data
+    eff1 = sim.SNPEffectEncodings.RECESSIVE
+    eff2 = sim.SNPEffectEncodings.ADDITIVE
+
     train_rec_main_effect00 = sim.BAMS.from_model(
         eff1=sim.SNPEffectEncodings.RECESSIVE,
         eff2=sim.SNPEffectEncodings.ADDITIVE,
@@ -1332,12 +1335,14 @@ for train_seed, test_seed in zip(range(0, 100), range(2000, 2010)):
             edge_weights_null_me,
         ]
     )
-    EDGE_alpha_Final = pd.concat(
+
+    output_path = "files"
+
+    EDGE_alpha_Results = pd.concat(
         [EDGE_alpha_Final, EDGE_alpha_Results], axis=0)
-    # EDGE_alpha_Final.to_csv(
-    #    f"/storage/home/jpz5091/work/bams/Sim1/EDGE_alpha_Results_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt",
-    #    sep=";",
-    # )
+
+    EDGE_alpha_Results.to_csv(
+        f"{output_path}/EDGE_alpha_Results_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt", sep=";")
 
     All_Results = pd.concat(
         [
@@ -1350,10 +1355,9 @@ for train_seed, test_seed in zip(range(0, 100), range(2000, 2010)):
             NULL_Results_Final,
         ]
     )
-    # All_Results.to_csv(
-    #   f"/storage/home/jpz5091/work/bams/Sim1/All_Results_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt",
-    #    sep=";",
-    # )
+
+    All_Results.to_csv(
+        f"{output_path}/All_Results_{num_samples}_{case_control_ratio}_pb{PEN_BASE}_pd{PEN_DIFF}_maf{MAFA}_snr{SNR}.txt", sep=";")
 
     endcycle = time.time()
     print("The time of execution of one cycle is :", endcycle - startcycle)

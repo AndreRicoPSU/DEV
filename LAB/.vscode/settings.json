@@ -1,8 +1,0 @@
-{
-    "code-runner.executorMap": {
-        "python": "./venv/bin/python3"
-    },
-    "code-runner.runInTerminal": true,
-    "python.formatting.provider": "black",
-    "debug.allowBreakpointsEverywhere": true
-}
