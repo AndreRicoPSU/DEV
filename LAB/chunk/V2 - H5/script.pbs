@@ -1,0 +1,32 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=1:00:00
+#PBS -l pmem=32gb
+#PBS -A open
+
+# Get started
+echo "Job started on `hostname` at `date`"
+
+# Go to the folder the script is being run from
+cd $PBS_O_WORKDIR              
+echo "Running from `pwd`"     
+
+# Load modules
+module purge
+module load gcc
+module load anaconda3
+
+# Create the environment
+
+# Activate the environment
+source activate /storage/work/alr6366/venv/bin
+python /gpfs/group/mah546/default/project/edge/HDF5_convert/main.py
+
+# Install libraries
+
+# Run this interactively
+
+# Finish up
+echo "Job Ended at `date`"
+
+

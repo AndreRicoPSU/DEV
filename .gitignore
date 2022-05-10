@@ -1,7 +1,10 @@
 Archived
-LAB/chunk/plink
-LAB/chunck/output
-LAB
-Pythonics
+/LAB/chunk/plink/
+/LAB/chunck/output/
 PIG
-
+*.h5
+*.bim
+*.bed
+*.fam
+*.txt
+*.csv
